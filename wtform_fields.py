@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, EqualTo
+from wtforms.validators import InputRequired, Length, EqualTo, ValidationError
+
+from models import User
 
 
 class RegistrationForm(FlaskForm):
@@ -20,3 +22,9 @@ class RegistrationForm(FlaskForm):
                                              EqualTo('password', message="Las contraseñas deben coincidir.")])
 
     submit_button = SubmitField('Create')
+
+    def validate_username(self, username):
+        user_object = User.query.filter_by(username=username.data).first()
+        if user_object:
+            raise ValidationError(
+                "Nombre de usuario existente, porfavor selecciona otro")
