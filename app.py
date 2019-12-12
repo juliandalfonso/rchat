@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 
@@ -42,6 +42,7 @@ def index():
         user = User(username=username, password=hashed_pswd)
         db.session.add(user)
         db.session.commit()
+        flash('Registro satisfactorio, porfavor inicia sesion', 'success')
         return redirect(url_for('login'))
 
     return render_template('index.html', form=reg_form)
@@ -64,14 +65,17 @@ def login():
 @login_required
 def chat():
     if not current_user.is_authenticated:
-        return "Porfavor inicia sesion para poder chatear"
+        flash('Porfavor inicia sesion', 'danger')
+        return redirect(url_for('login'))
+
     return "Chat with me"
 
 
 @app.route("/logout", methods=["GET"])
 def logout():
     logout_user()
-    return "Logout succesfull"
+    flash("Has cerrado sesion", 'success')
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
