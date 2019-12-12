@@ -43,7 +43,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a id="logout-btn" class="nav-link" href="{{ url_for('logout') }}"><span
-                                    style="color: #335177">Logout</span></a>
+                                    style="color: #335177">Cerrar sesion</span></a>
                         </li>
                     </ul>
                 </div>
@@ -59,6 +59,11 @@
                 <h4>Rooms</h4>
                 {% for room in rooms %}
                 <p id="{{ room|title }}" class="select-room cursor-pointer">{{ room|title }}</p>
+                {% endfor %}
+                <hr>
+                <h4>Conectados</h4>
+                {% for user in users %}
+                <p id="{{ user|title }}" class="select-room cursor-pointer">{{ user|title }}</p>
                 {% endfor %}
             </nav>
             <!-- Sidebar end -->

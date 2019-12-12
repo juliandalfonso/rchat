@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Display all incoming messages
     socket.on('message', data => {
-        console.log(data)
+
         // Display current message
         if (data.msg) {
             const p = document.createElement('p');

@@ -27,7 +27,7 @@ db = SQLAlchemy(app)
 
 socketio = SocketIO(app)
 ROOMS = ['lounge', 'news', 'games', 'coding']
-
+USERS = []
 # Configure flask login
 login = LoginManager(app)
 login.init_app(app)
@@ -65,6 +65,7 @@ def login():
     login_form = LoginForm()
     # Allow if validation success
     if login_form.validate_on_submit():
+        USERS.append(login_form.username.data)
         user_object = User.query.filter_by(
             username=login_form.username.data).first()
         login_user(user_object)
@@ -80,7 +81,7 @@ def chat():
     #     flash('Porfavor inicia sesion', 'danger')
     #     return redirect(url_for('login'))
 
-    return render_template('chat.html', username=current_user.username, rooms=ROOMS)
+    return render_template('chat.html', username=current_user.username, rooms=ROOMS, users=USERS)
 
 
 @app.route("/logout", methods=["GET"])
@@ -116,5 +117,4 @@ def leave(data):
 
 
 if __name__ == '__main__':
-    # socketio.run(app, debug=True)
-    app.run(debug=True)
+    socketio.run(app, debug=True)
