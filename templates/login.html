@@ -1,0 +1,23 @@
+{% from 'form_helper.html' import displayField %}
+
+{% extends 'prelogin-layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Iniciar sesion</h2>
+<p>Entra tu nombre de usuario y contraseña para inciar</p>
+
+<form action="{{ url_for('login') }}" method="POST">
+    {{ displayField(form.username, 'Nombre de usuario', autocomplete="off",autofocus=true) }}
+
+    {{ displayField(form.password, 'Contraseña') }}
+
+    <div>
+        {{form.submit_button}}
+    </div>
+
+    {{form.csrf_token}}
+</form>
+
+{% endblock %}
