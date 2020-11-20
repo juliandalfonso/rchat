@@ -31,7 +31,7 @@
             <div class="container-fluid">
                 <div id="show-sidebar-button" class="cursor-pointer">
                     <i class="fas fa-plus-circle "></i>
-                    <span>Rooms</span>
+                    <span>Salas</span>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -65,6 +65,12 @@
                 {% for user in users %}
                 <p id="{{ user|title }}" class="select-room cursor-pointer">{{ user|title }}</p>
                 {% endfor %}
+
+                <hr>
+                <hr>
+                <a href={{url_for('create')}}>Crear sala</a>
+
+
             </nav>
             <!-- Sidebar end -->
 

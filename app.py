@@ -16,10 +16,10 @@ from models import *
 
 # Configure app
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET')
+app.secret_key = "os.environ.get('SECRET')"
 
 # Configure db
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://tvduqqvnejtcxa:e8eb77ff53c7b0b4ddb07fd495815186243466a012ef03b24984ea342b4fabc8@ec2-107-22-224-154.compute-1.amazonaws.com:5432/d9ghma237tt9pc"
 
 db = SQLAlchemy(app)
 
@@ -74,6 +74,15 @@ def login():
     return render_template('login.html', form=login_form)
 
 
+@app.route("/create", methods=["GET", "POST"])
+def create():
+    create_form = RoomForm()
+    if create_form.validate_on_submit():
+        ROOMS.append(create_form.roomname.data)
+        return redirect(url_for('chat'))
+    return render_template('create.html', form=create_form)
+
+
 @app.route("/chat", methods=["GET", "POST"])
 @login_required
 def chat():
@@ -117,4 +126,4 @@ def leave(data):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.run()

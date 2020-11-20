@@ -52,3 +52,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('password_label', validators=[
         InputRequired(message="La contraseña es requerida"), invalid_credentials])
     submit_button = SubmitField('Create')
+
+
+class RoomForm(FlaskForm):
+    """Room form"""
+    roomname = StringField('room_label', validators=[
+        InputRequired(message="Campo requerido")
+    ])
+    submit_button = SubmitField('Create')

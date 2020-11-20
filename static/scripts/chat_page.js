@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    console.log("hola")
+
     // Make sidebar collapse on click
     document.querySelector('#show-sidebar-button').onclick = () => {
         document.querySelector('#sidebar').classList.toggle('view-sidebar');
