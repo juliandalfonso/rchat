@@ -26,7 +26,7 @@ db = SQLAlchemy(app)
 # initialize socketIO
 
 socketio = SocketIO(app)
-ROOMS = ['lounge', 'news', 'games', 'coding']
+ROOMS = ['lounge', 'Futbol', 'Noticias', 'Entretenimiento', 'Videojuegos']
 USERS = []
 # Configure flask login
 login = LoginManager(app)
