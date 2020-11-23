@@ -26,7 +26,7 @@ db = SQLAlchemy(app)
 # initialize socketIO
 
 socketio = SocketIO(app)
-ROOMS = ['lounge', 'Futbol', 'Noticias', 'Entretenimiento', 'Videojuegos']
+ROOMS = ['lounge', 'Futbol', 'Noticias', 'Entretenimiento', 'Videojuegos', "Random"]
 USERS = []
 # Configure flask login
 login = LoginManager(app)
@@ -95,7 +95,7 @@ def chat():
 
 @app.route("/logout", methods=["GET"])
 def logout():
-    logout_user()
+    logout_user() #funcion de flask, que hace pop a la session actual
     flash("Has cerrado sesion", 'success')
     return redirect(url_for('login'))
 

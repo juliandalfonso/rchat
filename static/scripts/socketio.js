@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log("Hola soledad")
 
     // Connect to websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
