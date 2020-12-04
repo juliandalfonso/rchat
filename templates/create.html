@@ -10,7 +10,7 @@
 
 <form action="{{ url_for('create') }}" method="POST">
 
-    {{ displayField(form.roomname, 'Nombre de usuario', autocomplete="off",autofocus=true) }}
+    {{ displayField(form.roomname, 'Nombre de la sala', autocomplete="off",autofocus=true) }}
 
     <div>
         {{form.submit_button}}

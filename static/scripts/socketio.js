@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
     // Connect to websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -86,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let newRoom = p.innerHTML
             // Check if user already in the room
             if (newRoom === room) {
-                msg = `You are already in ${room} room.`;
+                msg = `Ya te encuentras en la sala: ${room}`;
                 printSysMsg(msg);
             } else {
                 leaveRoom(room);
